@@ -76,17 +76,16 @@ import React, { useState, useEffect } from 'react';
 
       async function fetchProfiles() {
         try {
-          const { data, error } = await supabase
-              .from("profiles")
-              .select(`
-                id,
-                full_name,
-                auth.users (
-                  email
-            )
-          `)
-          .eq("id", (await supabase.auth.getUser()).data.user.id); 
-
+          const { data, error: profilesError } = await supabase
+            .from('profiles')
+            .select(`
+              id,
+              role,
+              full_name,
+              badge_number,
+              auth.users (email)
+            `)
+            .order('full_name');
 
           if (profilesError) throw profilesError;
 
