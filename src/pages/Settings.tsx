@@ -83,7 +83,7 @@ import React, { useState, useEffect } from 'react';
               role,
               full_name,
               badge_number,
-              auth_users (email)
+              users (email)
             `)
             .order('full_name');
 
